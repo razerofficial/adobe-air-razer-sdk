@@ -1,0 +1,45 @@
+apply plugin: 'com.android.library'
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots"
+        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.2'
+    }
+}
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    provided files('libs/FlashRuntimeExtensions.jar')
+    provided files('libs/runtimeClasses.jar')
+    compile(name: 'store-sdk-standard-release', ext: 'aar')
+}
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion '23.0.3'
+
+    defaultConfig {
+        ndk {
+            moduleName 'lib-ouya-ndk'
+			abiFilters 'armeabi-v7a'
+            stl 'stlport_static'
+            cFlags '-Wno-error=format-security'
+            ldLibs 'c', 'm', 'log'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}

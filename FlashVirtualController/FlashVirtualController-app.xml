@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<!-- 
+	Usage:
+
+	To localize the description, use the following format for the description element.
+	<description>
+	<text xml:lang="en">English App description goes here</text>
+	<text xml:lang="fr">French App description goes here</text>
+	<text xml:lang="ja">Japanese App description goes here</text>
+	</description>
+
+	To localize the name, use the following format for the name element.
+	<name>
+	<text xml:lang="en">English App name goes here</text>
+	<text xml:lang="fr">French App name goes here</text>
+	<text xml:lang="ja">Japanese App name goes here</text>
+	</name>
+-->
+<application xmlns="http://ns.adobe.com/air/application/20.0">
+	<android> 
+		  <manifestAdditions>
+		  <![CDATA[
+				<manifest android:installLocation="auto">
+					<uses-permission android:name="android.permission.INTERNET"/>
+				</manifest>
+			]]>
+		</manifestAdditions>
+	</android> 	
+  <id>tv.ouya.examples.air.flashvirtualcontroller</id>
+  <versionNumber>1.0.0</versionNumber>
+  <versionLabel/>
+  <filename>FlashVirtualController</filename>
+  <description/>
+  <name>FlashVirtualController</name>
+  <copyright/>
+  <initialWindow>
+    <content>FlashVirtualController.swf</content>
+    <systemChrome>standard</systemChrome>
+    <transparent>false</transparent>
+    <visible>true</visible>
+    <fullScreen>false</fullScreen>
+    <aspectRatio>landscape</aspectRatio>
+    <renderMode>cpu</renderMode>
+    <autoOrients>false</autoOrients></initialWindow>
+  <icon>
+    <image36x36>icons/icon_36x36.png</image36x36>
+    <image48x48>icons/icon_48x48.png</image48x48>
+    <image72x72>icons/icon_72x72.png</image72x72>
+    <image96x96>icons/icon_96x96.png</image96x96>
+  </icon>
+  <customUpdateUI>false</customUpdateUI>
+  <allowBrowserInvocation>false</allowBrowserInvocation>
+  <supportedLanguages>en</supportedLanguages>    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <extensions>
+    <extensionID>com.razerzone.store.sdk.engine.adobeair.razersdknativecontext</extensionID>
+  </extensions>
+</application>

@@ -1,0 +1,13 @@
+<extension xmlns="http://ns.adobe.com/air/extension/3.1">
+	<id>com.razerzone.store.sdk.engine.adobeair.razersdknativecontext</id>
+	<versionNumber>1</versionNumber>
+	<platforms>
+		<platform name="Android-ARM">
+		<applicationDeployment>
+		<nativeLibrary>AirRazerSDKPlugin.jar</nativeLibrary>
+		<initializer>com.razerzone.store.sdk.engine.adobeair.RazerSDKNativeExtension</initializer>
+		<finalizer>com.razerzone.store.sdk.engine.adobeair.RazerSDKNativeExtension</finalizer>
+		</applicationDeployment>
+		</platform>
+	</platforms>
+</extension>

@@ -960,11 +960,18 @@ _mRazerSDKNativeInterface.RequestProducts(jsonData);
 
 ### RequestPurchase
 
-`RequestPurchase` takes a `String` identifier for the `entitlement` or `consumable` being purchased.
+`RequestPurchase` has two parameters.
+The first parameter takes a `String` identifier for the `entitlement` or `consumable` being purchased.
+The second parameter takes a `String` product type ("ENTITLEMENT" or "CONSUMABLE").
 
 ```
 var identifier:String = "long_sword";
-_mRazerSDKNativeInterface.RequestPurchase(identifier);
+
+// Purchase Entitlement
+_mRazerSDKNativeInterface.RequestPurchase(identifier, "ENTITLEMENT");
+
+// Purchase Consumable
+_mRazerSDKNativeInterface.RequestPurchase(identifier, "CONSUMABLE");
 ```
 
 ### RequestReceipts

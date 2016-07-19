@@ -109,8 +109,8 @@ package com.razerzone.store.sdk.engine.adobeair
 			context.call("razerSDKRequestProducts", jsonData);
 		}
 		
-		public function RequestPurchase(identifier:String):void {
-			context.call("razerSDKRequestPurchase", identifier);
+		public function RequestPurchase(identifier:String, productType:String):void {
+			context.call("razerSDKRequestPurchase", identifier, productType);
 		}
 		
 		public function RequestReceipts():void {

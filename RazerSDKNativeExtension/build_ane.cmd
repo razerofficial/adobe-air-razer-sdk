@@ -3,7 +3,7 @@ REM SET JAVA_HOME=c:\Program Files\Java\jdk1.8.0_73
 SET PATH=%JAVA_HOME%\bin;%PATH%
 SET JAR="%JAVA_HOME%\bin\jar.exe"
 
-SET AIR_SDK=C:\Program Files\Adobe\Adobe Animate CC 2015\AIR20.0
+SET AIR_SDK=C:\Program Files\Adobe\Adobe Animate CC 2015.2\AIR21.0
 
 IF NOT EXIST %AIR_SDK% ECHO AdobeAIRSDK was not found!
 IF NOT EXIST %AIR_SDK% PAUSE

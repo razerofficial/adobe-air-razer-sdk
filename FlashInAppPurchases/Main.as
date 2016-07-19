@@ -132,7 +132,7 @@
 				} else if (_mButtonIndex == 1) {
 					if (_mProductIndex < products.length) {
 						LblStatus.text = "STATUS: Requesting Purchase...";
-						_mRazerSDKNativeInterface.RequestPurchase(products[_mProductIndex].identifier);
+						_mRazerSDKNativeInterface.RequestPurchase(products[_mProductIndex].identifier, "ENTITLEMENT");
 					} else {
 						LblStatus.text = "STATUS: Request products before making a purchase!";
 					}

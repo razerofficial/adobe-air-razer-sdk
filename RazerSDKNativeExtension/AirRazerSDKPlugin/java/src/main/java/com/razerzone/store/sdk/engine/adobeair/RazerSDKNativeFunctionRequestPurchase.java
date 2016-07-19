@@ -36,8 +36,16 @@ public class RazerSDKNativeFunctionRequestPurchase implements FREFunction {
 				Log.e(TAG, "Missing identifier:String argument");
 				return null;
 			}
+
+			String productType;
+			if (args.length > 1) {
+				productType = args[1].getAsString();
+			} else {
+				Log.e(TAG, "Missing productType:String argument");
+				return null;
+			}
 			
-			Plugin.requestPurchase(identififer);
+			Plugin.requestPurchase(identififer, productType);
 		} catch (Exception e) {
 			e.printStackTrace();
 			Log.e(TAG, "Unexpected exception");

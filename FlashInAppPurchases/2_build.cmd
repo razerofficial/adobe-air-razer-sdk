@@ -1,7 +1,7 @@
 CALL init.cmd
 rm -r -f %PROJNAME%New
 MOVE %PROJNAME% %PROJNAME%New
-IF NOT EXIST ..\CopyUniqueAppVersionId\bin\Debug\CopyUniqueAppVersionId.exe Be sure to build the build tool to copy the unique app version id
+IF NOT EXIST ..\CopyUniqueAppVersionId\bin\Debug\CopyUniqueAppVersionId.exe ECHO Be sure to build the build tool to copy the unique app version id
 IF NOT EXIST ..\CopyUniqueAppVersionId\bin\Debug\CopyUniqueAppVersionId.exe PAUSE
 ..\CopyUniqueAppVersionId\bin\Debug\CopyUniqueAppVersionId.exe %PROJNAME%New\AndroidManifest.xml AndroidManifest.xml
 COPY /Y AndroidManifest.xml %PROJNAME%New\AndroidManifest.xml

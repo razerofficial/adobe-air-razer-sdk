@@ -526,7 +526,7 @@ public class Plugin {
         sStoreFacade.requestProductList(activity, purchasables, sRequestProductsListener);
     }
 
-    public static void requestPurchase(String identifier) {
+    public static void requestPurchase(String identifier, String productType) {
         if (null == sFREContext) {
             Log.e(TAG, "Context is not set!");
             return;
@@ -544,7 +544,7 @@ public class Plugin {
             sendError("RequestPurchaseError", 0, "requestPurchase: sRequestPurchaseListener is null");
             return;
         }
-        Product product = new Product(identifier, "", 0, 0, "", 0, 0, "", "", Product.Type.ENTITLEMENT);
+        Product product = new Product(identifier, "", 0, 0, "", 0, 0, "", "", Product.Type.valueOf(productType));
         Purchasable purchasable = product.createPurchasable();
         sStoreFacade.requestPurchase(activity, purchasable, sRequestPurchaseListener);
     }

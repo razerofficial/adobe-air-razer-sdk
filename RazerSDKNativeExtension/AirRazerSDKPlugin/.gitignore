@@ -1,3 +1,4 @@
 .gradle
+.idea/runConfigurations.xml
 .idea/workspace.xml
 build/*

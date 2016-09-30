@@ -117,6 +117,10 @@ package com.razerzone.store.sdk.engine.adobeair
 			context.call("razerSDKRequestReceipts");
 		}
 		
+		public function RequestLogin():void {
+			context.call("razerSDKRequestLogin");
+		}
+		
 		public function RequestGamerInfo():void {
 			context.call("razerSDKRequestGamerInfo");
 		}

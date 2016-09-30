@@ -104,9 +104,9 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 19 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="runtimeClasses" level="project" />
     <orderEntry type="library" exported="" name="FlashRuntimeExtensions" level="project" />
     <orderEntry type="library" exported="" name="store-sdk-standard-release-" level="project" />
+    <orderEntry type="library" exported="" name="runtimeClasses" level="project" />
     <orderEntry type="library" exported="" name="android-android-19" level="project" />
   </component>
 </module>

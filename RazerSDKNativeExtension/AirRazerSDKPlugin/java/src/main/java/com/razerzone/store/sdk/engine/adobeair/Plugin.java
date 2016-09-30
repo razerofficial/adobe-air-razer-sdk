@@ -67,7 +67,10 @@ public class Plugin {
     // listener for init complete
     private static CancelIgnoringResponseListener<Bundle> sInitCompleteListener = null;
 
-    // listener for fetching gamer info
+    // listener for requesting login
+    private static ResponseListener<Void> sRequestLoginListener = null;
+
+    // listener for requesting gamer info
     private static ResponseListener<GamerInfo> sRequestGamerInfoListener = null;
 
     // listener for getting products
@@ -127,6 +130,7 @@ public class Plugin {
                     return;
                 }
 
+                /*
                 sInputView = new InputView(activity);
 
                 if (sEnableLogging) {
@@ -147,6 +151,7 @@ public class Plugin {
                 }
 
                 Controller.init(activity);
+                */
 
                 if (null == sStoreFacade) {
 
@@ -160,6 +165,32 @@ public class Plugin {
                         public void onFailure(int errorCode, String errorMessage, Bundle bundle) {
                             Log.e(TAG, "Error initializing StoreFacade errorCode=" + errorCode + " errorMessage=" + errorMessage);
                             sendError("InitCompleteOnFailure", errorCode, errorMessage);
+                        }
+                    };
+
+                    sRequestLoginListener = new ResponseListener<Void>() {
+                        @Override
+                        public void onSuccess(Void result) {
+                            if (sEnableLogging) {
+                                Log.d(TAG, "sRequestLoginListener: onSuccess");
+                            }
+                            sendResult("RequestLoginOnSuccess", "");
+                        }
+
+                        @Override
+                        public void onFailure(final int errorCode, final String errorMessage, final Bundle optionalData) {
+                            if (sEnableLogging) {
+                                Log.d(TAG, "sRequestLoginListener: onFailure errorCode=" + errorCode + " errorMessage=" + errorMessage);
+                            }
+                            sendError("RequestLoginOnFailure", errorCode, errorMessage);
+                        }
+
+                        @Override
+                        public void onCancel() {
+                            if (sEnableLogging) {
+                                Log.d(TAG, "requestLoginListener: onCancel");
+                            }
+                            sendError("RequestLoginOnCancel", 0, "Request Login was cancelled!");
                         }
                     };
 
@@ -249,6 +280,7 @@ public class Plugin {
                             JSONObject result = new JSONObject();
                             try {
                                 result.put("productIdentifier", purchaseResult.getProductIdentifier());
+                                result.put("orderId", purchaseResult.getOrderId());
                             } catch (JSONException e) {
                                 sendError("RequestPurchaseOnFailure", 0, "Failed to set productIdentifier!");
                                 return;
@@ -332,8 +364,6 @@ public class Plugin {
 
                     sStoreFacade = StoreFacade.getInstance();
 
-                    sStoreFacade.registerInitCompletedListener(sInitCompleteListener);
-
                     Bundle developerInfo = null;
                     try {
                         developerInfo = StoreFacade.createInitBundle(secretApiKey);
@@ -352,7 +382,7 @@ public class Plugin {
                     }
 
                     try {
-                        sStoreFacade.init(activity, developerInfo);
+                        sStoreFacade.init(activity, developerInfo, sInitCompleteListener);
                     } catch (Exception e) {
                         e.printStackTrace();
                         return;
@@ -501,7 +531,7 @@ public class Plugin {
             Log.d(TAG, "requestProducts");
         }
         if (null == sRequestProductsListener) {
-            sendError("RequestProductsError", 0, "requestProducts: sRequestGamerInfoListener is null");
+            sendError("RequestProductsError", 0, "requestProducts: sRequestProductsListener is null");
             return;
         }
         JSONArray jsonArray = null;
@@ -568,6 +598,30 @@ public class Plugin {
             return;
         }
         sStoreFacade.requestReceipts(activity, sRequestReceiptsListener);
+    }
+
+    public static void requestLogin() {
+        if (null == sFREContext) {
+            Log.e(TAG, "Context is not set!");
+            return;
+        }
+        final Activity activity = getActivity();
+        if (null == activity) {
+            sendError("RequestLoginError", 0, "Activity is null!");
+            return;
+        }
+        if (null == sStoreFacade) {
+            sendError("RequestLoginError", 0, "requestProducts sStoreFacade is null!");
+            return;
+        }
+        if (sEnableLogging) {
+            Log.i(TAG, "requestLogin");
+        }
+        if (null == sRequestLoginListener) {
+            sendError("RequestLoginError", 0, "requestLogin: sRequestLoginListener is null");
+            return;
+        }
+        sStoreFacade.requestLogin(activity, sRequestLoginListener);
     }
 
     public static void requestGamerInfo() {

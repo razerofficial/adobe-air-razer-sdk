@@ -102,6 +102,7 @@ public class RazerSDKNativeContext extends FREContext implements ActivityResultC
 		map.put("razerSDKRequestProducts", new RazerSDKNativeFunctionRequestProducts());
 		map.put("razerSDKRequestPurchase", new RazerSDKNativeFunctionRequestPurchase());
 		map.put("razerSDKRequestReceipts", new RazerSDKNativeFunctionRequestReceipts());
+		map.put("razerSDKRequestLogin", new RazerSDKNativeFunctionRequestLogin());
 		map.put("razerSDKRequestGamerInfo", new RazerSDKNativeFunctionRequestGamerInfo());
 		map.put("razerSDKGetGameData", new RazerSDKNativeFunctionGetGameData());
 		map.put("razerSDKPutGameData", new RazerSDKNativeFunctionPutGameData());

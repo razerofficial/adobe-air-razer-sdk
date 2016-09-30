@@ -16,47 +16,26 @@
 
 package com.razerzone.store.sdk.engine.adobeair;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.util.Log;
+
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.adobe.fre.FREObject;
 
-public class RazerSDKNativeFunctionInit implements FREFunction {
+public class RazerSDKNativeFunctionRequestLogin implements FREFunction {
 	
-	private static final String TAG = RazerSDKNativeFunctionInit.class.getSimpleName();
+	private static final String TAG = RazerSDKNativeFunctionRequestLogin.class.getSimpleName();
 	
 	@Override
 	public FREObject call(FREContext context, FREObject[] args) {
 		
-		String secretApiKey;
-		if (args.length > 0) {
-			try {
-				secretApiKey = args[0].getAsString();
-			} catch (Exception e) {
-				Log.e(TAG, "Exception reading secretApiKey:String argument");
-				return null;
-			}
-		} else {
-			Log.e(TAG, "Missing secretApiKey:String argument");
-			return null;
+		try {			
+			Plugin.requestLogin();
+		} catch (Exception e) {
+			e.printStackTrace();
+			Log.e(TAG, "Unexpected exception");
 		}
 		
-		// save a reference to the context to make async calls
-		Plugin.setFREContext(context);
-		
-		final Activity activity = context.getActivity();
-		if (null == activity) {
-			Log.e(TAG, "Activity is null!");
-			return null;
-		}
-
-		Plugin.setActivity(activity);
-
-        //Log.d(TAG, "SecretApiKey: "+secretApiKey);
-		Plugin.initPlugin(secretApiKey);
-
 		return null;
 	}
 }

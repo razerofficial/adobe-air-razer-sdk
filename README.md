@@ -913,18 +913,23 @@ package
 			
 			if (_event.code == "InitCompleteOnSuccess") {			
 				InitCompleteOnSuccess();
+			} else if (_event.code == "RequestLoginOnSuccess") {
+				RequestLoginOnSuccess();
 			} else if (_event.code == "RequestGamerInfoOnSuccess") {
 				RequestGamerInfoOnSuccess(_event.level);
-			} else if (_event.code == "RequestGamerInfoError" ||
+			} else if (_event.code == "RequestLoginError" ||
+				_event.code == "RequestGamerInfoError" ||
 				_event.code == "RequestProductsError" ||
 				_event.code == "RequestPurchaseError" ||
 				_event.code == "RequestReceiptsError" ||
 				_event.code == "InitCompleteOnFailure" ||
+				_event.code == "RequestLoginOnFailure" ||
 				_event.code == "RequestGamerInfoOnFailure" ||
 				_event.code == "RequestProductsOnFailure" ||
 				_event.code == "RequestPurchaseOnFailure" ||
 				_event.code == "RequestReceiptsOnFailure" ||
 				_event.code == "ShutdownOnFailure"||
+				_event.code == "RequestLoginOnCancel" ||
 				_event.code == "RequestGamerInfoOnCancel" ||
 				_event.code == "RequestProductsOnCancel" ||
 				_event.code == "RequestPurchaseOnCancel" ||
@@ -963,6 +968,7 @@ _mRazerSDKNativeInterface.RequestProducts(jsonData);
 `RequestPurchase` has two parameters.
 The first parameter takes a `String` identifier for the `entitlement` or `consumable` being purchased.
 The second parameter takes a `String` product type ("ENTITLEMENT" or "CONSUMABLE").
+The failure event will fire if the user is not logged in.
 
 ```
 var identifier:String = "long_sword";
@@ -976,15 +982,23 @@ _mRazerSDKNativeInterface.RequestPurchase(identifier, "CONSUMABLE");
 
 ### RequestReceipts
 
-`RequestReceipts` takes no arguments and the callback gets a list of receipts that the logged in gamer has purchased associated with the package.
+`RequestReceipts` takes no arguments and the callback gets a list of receipts that the logged in gamer has purchased associated with the package. The failure event will fire if the user is not logged in.
 
 ```
 _mRazerSDKNativeInterface.RequestReceipts();
 ```
 
+### RequestLogin
+
+`RequestLogin` opens the login dialog. The success event fires if the user logs in successfully. The success event will also fire if the user is already logged in. The failure event will fire if a login issue occurs. The cancel event will fire if the user cancels signing in.
+
+```
+_mRazerSDKNativeInterface.RequestLogin();
+```
+
 ### RequestGamerInfo
 
-`RequestGamerInfo` gets the `GamerInfo` for the logged in gamer. The `GamerInfo` holds the gamer `UUID` and `Username`.
+`RequestGamerInfo` gets the `GamerInfo` for the logged in gamer. The `GamerInfo` holds the gamer `UUID` and `Username`. The failure event will fire if the user is not logged in.
 
 ```
 _mRazerSDKNativeInterface.RequestGamerInfo();
